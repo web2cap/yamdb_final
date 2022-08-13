@@ -9,8 +9,7 @@ services:
       - ./../infra/.env
 
   web:
-    image: web2cap/api_yamdb:v1.0
-    build: ./../api_yamdb
+    image: web2cap/yamdb_final_web:latest
     restart: always
     volumes:
       - static_value:/app/static/
