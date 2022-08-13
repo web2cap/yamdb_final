@@ -13,6 +13,12 @@ from users.models import User
 from .filters import TitlesFilter
 from .messages import MESSAGES
 from .mixins import ListCreateDestroyViewSet
+from .permissions import (
+    AuthorAdminModeratorOrReadOnly,
+    MeOrAdmin,
+    PostOnlyNoCreate,
+    RoleAdminrOrReadOnly,
+)
 from .serializers import (
     CategorySerializer,
     CommentSerializer,
@@ -23,12 +29,6 @@ from .serializers import (
     UserConfirmCodeSerializer,
     UserSerializer,
     UserSignupSerializer,
-)
-from .permissions import (
-    AuthorAdminModeratorOrReadOnly,
-    MeOrAdmin,
-    PostOnlyNoCreate,
-    RoleAdminrOrReadOnly,
 )
 
 EMAIL_NOREPLAY_ADDRESS = getattr(settings, "EMAIL_NOREPLAY_ADDRESS", None)
