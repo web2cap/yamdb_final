@@ -1,7 +1,7 @@
 from django.db import models
+from users.models import User
 
 from .validators import validator_year
-from users.models import User
 
 
 class CreatedModel(models.Model):
