@@ -89,7 +89,6 @@ class AuthViewSet(viewsets.ModelViewSet):
             [data["email"]],
             fail_silently=False,
         )
-        
 
 
 class UserViewSet(viewsets.ModelViewSet):
