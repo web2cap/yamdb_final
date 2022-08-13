@@ -82,14 +82,14 @@ class AuthViewSet(viewsets.ModelViewSet):
         """Функция отправки кода подтверждения."""
 
         user = get_object_or_404(User, username=data["username"])
-        result = send_mail(
+        return send_mail(
             MESSAGES["mail_theme"],
             MESSAGES["mail_text"].format(user.confirmation_code),
             EMAIL_NOREPLAY_ADDRESS,
             [data["email"]],
             fail_silently=False,
         )
-        return result
+        
 
 
 class UserViewSet(viewsets.ModelViewSet):
