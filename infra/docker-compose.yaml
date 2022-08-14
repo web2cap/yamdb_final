@@ -10,6 +10,8 @@ services:
 
   web:
     image: web2cap/yamdb_final_web:latest
+    ports:
+      - "8001:8000"
     restart: always
     volumes:
       - static_value:/app/static/
