@@ -10,7 +10,6 @@ services:
 
   web:
     image: web2cap/yamdb_final_web:latest
-    # image: local_finak:v1
     ports:
       - "8000:8000"
     restart: always
