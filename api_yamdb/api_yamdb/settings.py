@@ -61,7 +61,6 @@ WSGI_APPLICATION = "api_yamdb.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": os.getenv(
-            # "DB_ENGINE", default="django.db.backends.postgresql_psycopg2"
             "DB_ENGINE",
             default="django.db.backends.postgresql",
         ),
