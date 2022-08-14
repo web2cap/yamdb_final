@@ -59,6 +59,7 @@ jobs:
           script: |
             sudo docker compose stop
             sudo docker compose rm web
+            docker image rm web2cap/yamdb_final_web
             rm .env
             touch .env
             echo DB_ENGINE=${{ secrets.DB_ENGINE }} >> .env
