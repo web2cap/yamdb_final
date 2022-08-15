@@ -2,7 +2,7 @@
 # DRF application in Docker with CI / CD deploy
 
 ## Project demo page
-http://web2cap.hopto.org/redoc/
+http://web2cap.hopto.org/api/v1/
 
 The application is packaged in 3 containers:
  - DB: PostgreSQL Database
