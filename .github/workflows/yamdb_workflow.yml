@@ -70,6 +70,9 @@ jobs:
             echo DB_PORT=${{ secrets.DB_PORT }} >> .env
             echo ST_SECRET_KEY="${{ secrets.ST_SECRET_KEY }}" >> .env
             sudo docker compose up -d 
+            sudo docker compose exec web python manage.py migrate
+            sudo docker compose exec web python manage.py collectstatic --no-input 
+            sudo python manage.py loaddata fixtures/fixtures.json
 
   send_message:
     runs-on: ubuntu-latest
@@ -80,4 +83,4 @@ jobs:
       with:
         to: ${{ secrets.TELEGRAM_TO }}
         token: ${{ secrets.TELEGRAM_TOKEN }}
-        message: ${{ github.workflow }} успешно выполнен! 
+        message: ${{ github.workflow }} Completed successfully! 
