@@ -44,6 +44,7 @@ yamdb_final
 │    │   └── redoc.yaml
 │    ├── templates
 │    │   └── redoc.html
+|    ├── Dockerfile
 │    ├── manage.py
 |    └── requirements.txt 
 ├── infra/ <-- Deploy files
@@ -53,7 +54,6 @@ yamdb_final
 |    └── docker-compose.yaml
 ├── tests/
 ├── .gitignore
-├── Dockerfile 
 ├── pytest.ini
 ├── README.md
 └── setup.cfg
