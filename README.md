@@ -1,4 +1,9 @@
+
 # DRF application in Docker with CI / CD deploy
+
+## Project demo page
+http://web2cap.hopto.org/redoc/
+
 The application is packaged in 3 containers:
  - DB: PostgreSQL Database
  - Web: Django RF application, Gunicorn
