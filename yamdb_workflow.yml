@@ -61,7 +61,7 @@ jobs:
           script: |
             sudo docker compose stop
             sudo docker compose rm web -f
-            docker image rm ${{ secrets.DOCKER_USERNAME }}/yamdb_final_web
+            sudo docker image rm ${{ secrets.DOCKER_USERNAME }}/yamdb_final_web
             rm .env
             touch .env
             echo DB_ENGINE=${{ secrets.DB_ENGINE }} >> .env
