@@ -59,8 +59,9 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           passphrase: ${{ secrets.PASSPHRASE }}
           script: |
-            sudo docker compose stop
-            sudo docker compose rm web -f
+            cd yamdb/
+            sudo docker compose stop yamdb_web
+            sudo docker compose rm yamdb_web -f
             sudo docker image rm ${{ secrets.DOCKER_USERNAME }}/yamdb_final_web
             rm .env
             touch .env
@@ -72,11 +73,11 @@ jobs:
             echo DB_PORT=${{ secrets.DB_PORT }} >> .env
             echo ST_SECRET_KEY="${{ secrets.ST_SECRET_KEY }}" >> .env
             sudo docker compose up -d 
-            sudo docker compose exec web python manage.py migrate
-            sudo docker compose exec web python manage.py collectstatic --no-input 
-            sudo docker compose exec web python manage.py loaddata fixtures/fixtures.json
-            sudo docker compose exec web mv forstatic/redoc.yaml static/redoc.yaml
-            sudo docker compose exec web rm -r forstatic/
+            sudo docker compose exec yamdb_web python manage.py migrate
+            sudo docker compose exec yamdb_web python manage.py collectstatic --no-input 
+            sudo docker compose exec yamdb_web python manage.py loaddata fixtures/fixtures.json
+            sudo docker compose exec yamdb_web mv forstatic/redoc.yaml static/redoc.yaml
+            sudo docker compose exec yamdb_web rm -r forstatic/
 
   send_message:
     runs-on: ubuntu-latest

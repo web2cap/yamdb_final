@@ -2,7 +2,7 @@
 # DRF application in Docker with CI / CD deploy
 
 ## Project demo page
-http://web2cap.hopto.org/api/v1/
+https://for.hopto.org/yamdb/api/v1/
 
 The application is packaged in 3 containers:
  - DB: PostgreSQL Database
@@ -114,8 +114,8 @@ DB_ENGINE = django.db.backends.postgresql_psycopg2
 DB_HOST = db # DB contaiter name
 DB_NAME # Database name
 DB_PORT = 5432
-POSTGRES_USER # Database username
-POSTGRES_PASSWORD # Database user password
+DB_USER # Database username
+DB_PASSWORD # Database user password
 ST_SECRET_KEY # Django secret key 
 
 DOCKER_PASSWORD # Password for dockerhub

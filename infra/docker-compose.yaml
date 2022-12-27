@@ -1,25 +1,25 @@
 version: '3.8'
 
 services:
-  db:
+  yamdb_db:
     image: postgres:13.0-alpine
     volumes:
       - /var/lib/postgresql/data/
     env_file:
       - ./.env
 
-  web:
+  yamdb_web:
     image: web2cap/yamdb_final_web:latest
     restart: always
     volumes:
       - static_value:/app/static/
       - media_value:/app/media/
     depends_on:
-      - db
+      - yamdb_db
     env_file:
       - ./.env
 
-  nginx:
+  yamdb_nginx:
     image: nginx:1.21.3-alpine
     ports:
       - "80:80"
@@ -28,7 +28,7 @@ services:
       - static_value:/var/html/static/
       - media_value:/var/html/media/
     depends_on:
-      - web
+      - yamdb_web
 
 volumes:
   static_value:
