@@ -2,7 +2,7 @@ from rest_framework import permissions
 
 
 class PostOnlyNoCreate(permissions.BasePermission):
-    """Разрешает только метод POST. Запрещает действие метода POST create."""
+    """Allows only the POST method. Disables the action of the POST create method."""
 
     def has_permission(self, request, view):
         accept_methods = ("token", "signup")
@@ -10,7 +10,7 @@ class PostOnlyNoCreate(permissions.BasePermission):
 
 
 class IsRoleAdmin(permissions.BasePermission):
-    """Разрешает доступ пользователям с ролью admin и суперпользователям."""
+    """Allows access to users with the admin role and superusers."""
 
     def has_permission(self, request, view):
         return request.user.is_authenticated and (
@@ -19,7 +19,7 @@ class IsRoleAdmin(permissions.BasePermission):
 
 
 class MeOrAdmin(permissions.BasePermission):
-    """Разрешает запрос на /me/. Полный доступ админам."""
+    """Allows a request to /me/. Full access to admins."""
 
     def has_permission(self, request, view):
         path_end = request.path_info.split("/")[-2]
@@ -31,7 +31,7 @@ class MeOrAdmin(permissions.BasePermission):
 
 
 class RoleAdminrOrReadOnly(permissions.BasePermission):
-    """Доступ на чтение всем. Полный доступ админу и суперпользователю."""
+    """Read access to everyone. Full access to admin and superuser."""
 
     def has_permission(self, request, view):
         return request.method in permissions.SAFE_METHODS or (

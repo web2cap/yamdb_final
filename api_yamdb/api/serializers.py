@@ -8,7 +8,7 @@ from .messages import MESSAGES
 
 
 class UserSerializer(serializers.ModelSerializer):
-    """Сериалайзер для Users."""
+    """Serializer for Users."""
 
     class Meta:
         model = User
@@ -24,7 +24,7 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class UserSignupSerializer(serializers.ModelSerializer):
-    "Сериалайзер для самостоятельной регистрации пользователей."
+    """Serializer for self-registration of users."""
 
     def validate_username(self, value):
         if value == "me":
@@ -37,12 +37,12 @@ class UserSignupSerializer(serializers.ModelSerializer):
 
 
 class UserConfirmCodeSerializer(serializers.Serializer):
-    "Сериалайзер для проверки username с кодом подтверждения."
+    """Serializer to validate username with verification code."""
     username = serializers.CharField(max_length=150, required=True)
     confirmation_code = serializers.CharField(max_length=64, required=True)
 
     def validate(self, data):
-        """Проверка соответстствия кода логину."""
+        """Checking if the code matches the login."""
         user = get_object_or_404(User, username=data["username"])
         if user.confirmation_code == data["confirmation_code"]:
             return data
@@ -50,7 +50,7 @@ class UserConfirmCodeSerializer(serializers.Serializer):
 
 
 class CategorySerializer(serializers.ModelSerializer):
-    """Сериалайзер для модели Category."""
+    """Serializer for Category model."""
 
     class Meta:
         model = Category
@@ -59,7 +59,7 @@ class CategorySerializer(serializers.ModelSerializer):
 
 
 class GenreSerializer(serializers.ModelSerializer):
-    """Сериалайзер для модели Genre."""
+    """Serializer for Genre."""
 
     class Meta:
         model = Genre
@@ -68,7 +68,7 @@ class GenreSerializer(serializers.ModelSerializer):
 
 
 class TitleSerializer(serializers.ModelSerializer):
-    """Сериалайзер для модели Title."""
+    """Serializer for Title."""
 
     genre = serializers.SlugRelatedField(
         slug_field="slug", many=True, queryset=Genre.objects.all()
@@ -83,7 +83,7 @@ class TitleSerializer(serializers.ModelSerializer):
 
 
 class ReadOnlyTitleSerializer(serializers.ModelSerializer):
-    """Сериалайзер для модели Title при действии 'retrieve', 'list.'"""
+    """Serializer for Title for actions 'retrieve', 'list.'"""
 
     rating = serializers.IntegerField(
         source="reviews__score__avg", read_only=True

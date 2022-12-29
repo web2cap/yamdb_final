@@ -25,15 +25,16 @@ EMAIL_NOREPLAY_ADDRESS = getattr(settings, "EMAIL_NOREPLAY_ADDRESS", None)
 
 
 class AuthViewSet(viewsets.ModelViewSet):
-    """Получение токена авторизации JWT в ответ на POST запрос, на адрес
-    /token. POST на корневой эндпоитн и другие типы запросов запрещены
-    пермишенном."""
+    """Getting a JWT authorization token in response to a POST request,
+     to the address /token.
+     POST to the root endpoint and other types of requests are prohibited
+     permissive."""
 
     permission_classes = (PostOnlyNoCreate,)
 
     @action(detail=False, methods=["post"])
     def token(self, request):
-        """Получение токена по username и confirmation_code."""
+        """Getting a token by username and confirmation_code."""
 
         serializer = UserConfirmCodeSerializer(data=request.data)
         if serializer.is_valid():
@@ -48,10 +49,10 @@ class AuthViewSet(viewsets.ModelViewSet):
 
     @action(detail=False, methods=["post"])
     def signup(self, request):
-        """Самостоятельная регистрация нового пользователя.
-        Создает пользователя по запросу.
-        Отправляет код подверждения пользователю на email.
-        Отправляет код подверждения на email существующим пользователям."""
+        """Self-registration of a new user.
+         Creates a user on request.
+         Sends a confirmation code to the user by email.
+         Sends a verification code by email to existing users."""
 
         serializer = UserSignupSerializer(data=request.data)
         if serializer.is_valid():
@@ -79,7 +80,7 @@ class AuthViewSet(viewsets.ModelViewSet):
         )
 
     def send_mail_code(self, data):
-        """Функция отправки кода подтверждения."""
+        """Send confirmation code function."""
 
         user = get_object_or_404(User, username=data["username"])
         return send_mail(
@@ -92,9 +93,9 @@ class AuthViewSet(viewsets.ModelViewSet):
 
 
 class UserViewSet(viewsets.ModelViewSet):
-    """ViewSet API управления пользователями.
-    Запросы к экземпляру осуществляются по username.
-    При обращении на /me/ пользователь дополняет/получает свою запись."""
+    """ViewSet User Management API.
+     Requests to the instance are made by username.
+     When accessing /me/, the user completes/gets his entry."""
 
     queryset = User.objects.all()
     serializer_class = UserSerializer
@@ -102,8 +103,8 @@ class UserViewSet(viewsets.ModelViewSet):
     lookup_field = "username"
 
     def retrieve(self, request, username=None):
-        """Получение экземпляра пользователя по username.
-        При запросе на /me/ возвращает авторизованного пользователя."""
+        """Getting a user instance by username.
+         When requested for /me/, returns the logged in user."""
 
         if username == "me":
             username = request.user.username
@@ -112,9 +113,9 @@ class UserViewSet(viewsets.ModelViewSet):
         return Response(serializer.data)
 
     def partial_update(self, request, username=None):
-        """Обновление экземпляра пользователя по username.
-        Не позволяет установить непредусмотренную роль.
-        Если пользователь не админ, не позволяет сменить роль."""
+        """Updating the user instance by username.
+         Does not allow installation of an unintended role.
+         If the user is not an admin, it does not allow changing the role."""
 
         data = request.data.copy()
         if "role" in data:
@@ -131,8 +132,8 @@ class UserViewSet(viewsets.ModelViewSet):
         return Response(serializer.data)
 
     def destroy(self, request, username=None):
-        """Удаление пользователя.
-        Не позволяет удалить самого себя при запросе на /me/."""
+        """Deleting a user.
+         Prevents itself from being deleted when requested for /me/."""
 
         if username == "me":
             return Response(
@@ -145,7 +146,7 @@ class UserViewSet(viewsets.ModelViewSet):
 
 
 class CategoryViewSet(ListCreateDestroyViewSet):
-    """API для работы с моделью категорий."""
+    """API for working with category model."""
 
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
@@ -156,7 +157,7 @@ class CategoryViewSet(ListCreateDestroyViewSet):
 
 
 class GenreViewSet(ListCreateDestroyViewSet):
-    """API для работы с моделью жанров."""
+    """API for working with the genre model."""
 
     queryset = Genre.objects.all()
     serializer_class = GenreSerializer
@@ -167,7 +168,7 @@ class GenreViewSet(ListCreateDestroyViewSet):
 
 
 class TitleViewSet(viewsets.ModelViewSet):
-    """API для работы произведений."""
+    """API for work of works."""
 
     queryset = (
         Title.objects.all().annotate(Avg("reviews__score")).order_by("name")

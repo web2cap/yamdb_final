@@ -5,7 +5,7 @@ from .models import User
 
 
 class CustomUserAdmin(UserAdmin):
-    """Добавляет необходимые поля для управление пользователями."""
+    """Adds required fields for user management."""
 
     model = User
     list_display = ("username", "role", "is_staff", "is_active")

@@ -8,36 +8,36 @@ class User(AbstractUser):
     ADMIN = "admin"
     MODERATOR = "moderator"
     ROLE_CHOICES = (
-        (USER, "Пользователь"),
-        (MODERATOR, "Модератор"),
-        (ADMIN, "Администратор"),
+        (USER, "User"),
+        (MODERATOR, "Moderator"),
+        (ADMIN, "Administrator"),
     )
 
     def get_secret_key():
         return get_random_secret_key()
 
     email = models.EmailField(
-        "Электронная почта",
+        "E-mail",
         blank=False,
         null=False,
         max_length=254,
         unique=True,
     )
     role = models.CharField(
-        "Роль",
+        "Role",
         choices=ROLE_CHOICES,
         default=USER,
         blank=False,
         max_length=32,
     )
     bio = models.TextField(
-        "Биография",
+        "Bio",
         blank=True,
         null=True,
         default=None,
     )
     confirmation_code = models.CharField(
-        "Код подтверждения", max_length=64, default=get_secret_key
+        "Confirmation code", max_length=64, default=get_secret_key
     )
 
     @property
@@ -64,8 +64,8 @@ class User(AbstractUser):
                 save_user.user_permissions.add(permission)
 
     class Meta:
-        verbose_name = "Пользователь"
-        verbose_name_plural = "Пользователи"
+        verbose_name = "User"
+        verbose_name_plural = "Users"
         ordering = ["role", "username"]
 
     def __str__(self):
