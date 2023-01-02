@@ -63,7 +63,7 @@ DATABASES = {
     "default": {
         "ENGINE": os.getenv(
             "DB_ENGINE",
-            default="django.db.backends.postgresql_psycopg2",
+            default="django.db.backends.postgresql",
         ),
         "NAME": os.getenv("DB_NAME", default="yambd"),
         "USER": os.getenv("DB_USER", default="yambd"),
