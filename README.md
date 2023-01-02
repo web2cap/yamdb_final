@@ -8,6 +8,8 @@ https://yambd.w2c.net.eu.org/api/v1/
 The **YaMDb** project is designed to collect feedback on products.
 Products can be: *"Books"*, *"Movies"*, *"Music"*.
 
+![example workflow](https://github.com/web2cap/yamdb_final/actions/workflows/master_yamdb_workflow.yml/badge.svg)
+
 ### Project composition:
 
 The project includes:
@@ -79,8 +81,6 @@ Include 4 steps:
  - Build: build and push to docker hub
  - Deploy: deploy on server with docker and docker compose
  - Inform: Send massage to Telegram
-
-![example workflow](https://github.com/web2cap/yamdb_final/actions/workflows/master_yamdb_workflow.yml/badge.svg)
 
 
 ### Files structure
@@ -179,6 +179,7 @@ psycopg2-binary==2.9.2
 Fork this repository
 Add a repository secrets:
 
+```
 HOST # Server hostname or IP for deploy
 USER # Server Username
 SSH_KEY # The public key that is present on the server
@@ -197,6 +198,7 @@ DOCKER_USERNAME # Username for dockerhub
 
 TELEGRAM_TO # Your telegram ID. Help: @username_to_id_bot
 TELEGRAM_TOKEN # Your telegram bot token. Help: @BotFather
+```
 
 When you make `git push` workflow started
 
