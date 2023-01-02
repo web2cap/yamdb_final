@@ -68,7 +68,7 @@ DATABASES = {
         "NAME": os.getenv("DB_NAME", default="yambd"),
         "USER": os.getenv("DB_USER", default="yambd"),
         "PASSWORD": os.getenv("DB_PASSWORD", default="yambd"),
-        "HOST": os.getenv("DB_HOST", default="db"),
+        "HOST": os.getenv("DB_HOST", default="localhost"),
         "PORT": os.getenv("DB_PORT", default="5432"),
     }
 }
