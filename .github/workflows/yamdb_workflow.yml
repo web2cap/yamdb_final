@@ -35,12 +35,6 @@ jobs:
         pip install -r api_yamdb/requirements.txt 
 
     - name: Test with flake8 and django tests
-      run: |
-        python -m flake8
-        pytest --reuse-db
-        cd api_yamdb/
-        python manage.py migrate
-        python manage.py test
       env:
         DB_ENGINE:django.db.backends.postgresql_psycopg2
         DB_NAME:postgres
@@ -48,6 +42,13 @@ jobs:
         DB_PASSWORD:postgres
         DB_HOST:localhost
         DB_PORT:5432
+      run: |
+        python -m flake8
+        pytest --reuse-db
+        cd api_yamdb/
+        python manage.py migrate
+        python manage.py test
+      
   build_and_push_to_docker_hub:
     name: Push Docker image to Docker Hub
     runs-on: ubuntu-latest
