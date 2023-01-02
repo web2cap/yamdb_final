@@ -15,6 +15,11 @@ jobs:
 
     - name: Install dependencies
       run: | 
+        apt install postgresql postgresql-contrib
+        systemctl start postgresql.service
+        psql -d postgres -c 'create role yamdb with login;'
+        psql -d postgres -c 'alter role yambd with encrypted password 'yambd';'
+        psql -d postgres -c 'alter user yambd createdb;'
         python -m pip install --upgrade pip 
         pip install flake8 pep8-naming flake8-broken-line flake8-return flake8-isort
         pip install -r api_yamdb/requirements.txt 
