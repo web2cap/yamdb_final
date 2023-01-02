@@ -2,7 +2,8 @@ from rest_framework import permissions
 
 
 class PostOnlyNoCreate(permissions.BasePermission):
-    """Allows only the POST method. Disables the action of the POST create method."""
+    """Allows only the POST method.
+    Disables the action of the POST create method."""
 
     def has_permission(self, request, view):
         accept_methods = ("token", "signup")

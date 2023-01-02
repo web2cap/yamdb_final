@@ -29,7 +29,7 @@ class Genre(models.Model):
     slug = models.SlugField(
         verbose_name="Genre address",
         help_text="The unique address of the genre, part of the URL"
-         "(for example, for the genre a fantasy slug can be fantastic).",
+        "(for example, for the genre a fantasy slug can be fantastic).",
         max_length=50,
         unique=True,
     )
@@ -55,7 +55,7 @@ class Category(models.Model):
     slug = models.SlugField(
         verbose_name="Category address",
         help_text="The unique address of the category, part of the URL"
-         "(for example, for category movies slug could be films).",
+        "(for example, for category movies slug could be films).",
         max_length=50,
         unique=True,
     )
