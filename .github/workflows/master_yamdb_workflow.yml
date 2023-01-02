@@ -1,6 +1,10 @@
-name: yamdb_workflow
+name: master_yamdb_workflow
 
-on: [push]
+# on: [push]
+on:
+  push:
+    branches:
+      - master 
 
 jobs:
   tests:
@@ -44,7 +48,6 @@ jobs:
         pytest --reuse-db
         cd api_yamdb/
         python manage.py test
-      # python manage.py migrate
   build_and_push_to_docker_hub:
     name: Push Docker image to Docker Hub
     runs-on: ubuntu-latest
